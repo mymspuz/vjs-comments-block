@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="sass/style.css">
+</head>
+<body>
+    <div class="container">
+        <form action="#" name="commentForm">
+            <div class="form-comment-params">
+                <div class="form-group">
+                    <input type="text" id="commentUser" name="commentUser" class="form-control form-comment-params__user" placeholder="Введите имя">
+                    <label for="commentUser" class="form-label text-danger" hidden></label>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="commentDate" name="commentDate" class="form-control form-comment-params__date">
+                    <label for="commentDate" class="form-label text-danger" hidden></label>
+                </div>
+            </div>
+
+            <div class="form-comment-msg">
+                <div class="form-group">
+                    <textarea id="commentMsg" name="commentMsg" placeholder="Введите комментарий" class="form-control form-comment-msg__text"></textarea>
+                    <label for="commentMsg" class="form-label text-danger" hidden></label>
+                </div>
+            </div>
+            <div class="form-comment-action">
+                <button class="btn btn-cancel" id="btnCancel">Очистить</button>
+                <button type="submit" class="btn btn-send" id="btnSend" disabled>Опубликовать</button>
+            </div>
+        </form>
+
+        <div class="comments-list"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
