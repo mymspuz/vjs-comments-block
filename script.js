@@ -145,13 +145,14 @@ function commentRemove(element) {
     }
 }
 // Изменяем внешний вид полей ввода
-function changeInput(element, minLength) {
+function changeInput(element) {
     const value = element.value.trim();
+    const min = minLength[element.id];
     if (!value) {
         valid(element, 'Не может быть пустым');
     }
-    else if (value.length < minLength) {
-        valid(element, `Минимальная длина - ${minLength} символа`);
+    else if (value.length < min) {
+        valid(element, `Минимальная длина - ${min} символа`);
     } else {
         valid(element, '');
     }
@@ -323,6 +324,11 @@ const stateForm = {
     commentDate: true,
     commentMsg: false
 }
+// Минимальная длина для каждого из полей
+const minLength = {
+    commentUser: 3,
+    commentMsg: 2
+}
 // Классы для валидации формы
 const classValid = {valid: 'is-valid', invalid: 'is-invalid'};
 const classIcon = {heart: 'bi-heart', heartFill: 'bi-heart-fill', trash: 'bi-trash'};
@@ -332,15 +338,15 @@ commentForm.addEventListener('keydown', (event) => {
     if (event.code === 'Enter') sendForm(event);
 });
 // Добавляем прослушку событий для поля пользователя
-commentUser.addEventListener('change', (event) => changeInput(event.target, 3));
-commentUser.addEventListener('input', (event) => changeInput(event.target, 3));
+commentUser.addEventListener('change', (event) => changeInput(event.target));
+commentUser.addEventListener('input', (event) => changeInput(event.target));
 commentUser.focus();
 // Добавляем прослушку событий для поля даты
 commentDate.addEventListener('change', (event) => changeDate(event.target));
 commentDate.addEventListener('input', (event) => changeDate(event.target));
 // Добавляем прослушку событий для поля сообщения
-commentMsg.addEventListener('change', (event) => changeInput(event.target, 2));
-commentMsg.addEventListener('input', (event) => changeInput(event.target, 2));
+commentMsg.addEventListener('change', (event) => changeInput(event.target));
+commentMsg.addEventListener('input', (event) => changeInput(event.target));
 // Добавляем прослушку событий для кнопки очистки
 btnCancel.addEventListener('click', (event) => clearForm(event));
 // Отображаем список комментариев
